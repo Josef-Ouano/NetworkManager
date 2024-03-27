@@ -38,7 +38,12 @@ NM_GOBJECT_PROPERTIES_DEFINE_BASE(PROP_AUTO_CONFIG,
                                   PROP_SIM_OPERATOR_ID,
                                   PROP_MTU,
                                   PROP_INITIAL_EPS_CONFIG,
-                                  PROP_INITIAL_EPS_APN, );
+                                  //APN GNome Additional code start
+                                  //PROP_INITIAL_EPS_APN, );
+                                  PROP_INITIAL_EPS_APN, 
+                                  PROP_INITIAL_EPS_USERNAME,
+                                  PROP_INITIAL_EPS_PASSWORD, );
+                                  //APN Gnome Additional code end
 
 typedef struct {
     char   *number;
@@ -51,6 +56,10 @@ typedef struct {
     char   *network_id;
     char   *pin;
     char   *initial_eps_apn;
+    //APN GNome Additional code start
+    char   *initial_eps_username;
+    char   *initial_eps_password;
+    //APN Gnome Additional code end
     guint   password_flags;
     guint   pin_flags;
     guint32 mtu;
@@ -318,6 +327,23 @@ nm_setting_gsm_get_initial_eps_apn(NMSettingGsm *setting)
 
     return NM_SETTING_GSM_GET_PRIVATE(setting)->initial_eps_apn;
 }
+
+//APN Gnome Additional code start
+const char *
+nm_setting_gsm_get_initial_eps_username(NMSettingGsm *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_GSM(setting), NULL);
+
+    return NM_SETTING_GSM_GET_PRIVATE(setting)->initial_eps_username;
+}
+const char *
+nm_setting_gsm_get_initial_eps_password(NMSettingGsm *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_GSM(setting), NULL);
+
+    return NM_SETTING_GSM_GET_PRIVATE(setting)->initial_eps_password;
+}
+//APN Gnome Additional code end
 
 static gboolean
 _verify_apn(const char *apn, gboolean allow_empty, const char *property_name, GError **error)
@@ -846,6 +872,26 @@ nm_setting_gsm_class_init(NMSettingGsmClass *klass)
                                               NMSettingGsmPrivate,
                                               initial_eps_apn,
                                               .direct_string_allow_empty = TRUE);
+
+    //APN Gnome Additional code start
+    _nm_setting_property_define_direct_string(properties_override,
+                                              obj_properties,
+                                              NM_SETTING_GSM_INITIAL_EPS_BEARER_USERNAME,
+                                              PROP_INITIAL_EPS_USERNAME,
+                                              NM_SETTING_PARAM_NONE,
+                                              NMSettingGsmPrivate,
+                                              initial_eps_username,
+                                              .direct_string_allow_empty = TRUE);
+
+    _nm_setting_property_define_direct_string(properties_override,
+                                              obj_properties,
+                                              NM_SETTING_GSM_INITIAL_EPS_BEARER_PASSWORD,
+                                              PROP_INITIAL_EPS_PASSWORD,
+                                              NM_SETTING_PARAM_NONE,
+                                              NMSettingGsmPrivate,
+                                              initial_eps_password,
+                                              .direct_string_allow_empty = TRUE);
+    //APN Gnome Additional code end
 
     /* Ignore incoming deprecated properties */
     _nm_properties_override_dbus(properties_override,

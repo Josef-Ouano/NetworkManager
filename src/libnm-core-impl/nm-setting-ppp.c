@@ -28,6 +28,14 @@ NM_GOBJECT_PROPERTIES_DEFINE_BASE(PROP_NOAUTH,
                                   PROP_REFUSE_CHAP,
                                   PROP_REFUSE_MSCHAP,
                                   PROP_REFUSE_MSCHAPV2,
+                                  //APN Gnome Additional code start
+                                  PROP_INITIAL_EPS_NOAUTH,
+                                  PROP_INITIAL_EPS_REFUSE_EAP,
+                                  PROP_INITIAL_EPS_REFUSE_PAP,
+                                  PROP_INITIAL_EPS_REFUSE_CHAP,
+                                  PROP_INITIAL_EPS_REFUSE_MSCHAP,
+                                  PROP_INITIAL_EPS_REFUSE_MSCHAPV2,
+                                  //APN Gnome Additional code end
                                   PROP_NOBSDCOMP,
                                   PROP_NODEFLATE,
                                   PROP_NO_VJ_COMP,
@@ -53,6 +61,14 @@ typedef struct {
     bool    refuse_chap;
     bool    refuse_mschap;
     bool    refuse_mschapv2;
+    //APN Gnome Additional code start
+    bool    initial_eps_noauth;
+    bool    initial_eps_refuse_eap;
+    bool    initial_eps_refuse_pap;
+    bool    initial_eps_refuse_chap;
+    bool    initial_eps_refuse_mschap;
+    bool    initial_eps_refuse_mschapv2;
+    //APN Gnome Additional code end
     bool    nobsdcomp;
     bool    nodeflate;
     bool    no_vj_comp;
@@ -163,8 +179,59 @@ nm_setting_ppp_get_refuse_mschapv2(NMSettingPpp *setting)
 {
     g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
 
-    return NM_SETTING_PPP_GET_PRIVATE(setting)->refuse_mschapv2;
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_mschapv2;
 }
+
+//APN Gnome Additional code start
+gboolean
+nm_setting_ppp_get_initial_eps_noauth(NMSettingPpp *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
+
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_noauth;
+}
+
+gboolean
+nm_setting_ppp_get_initial_eps_refuse_eap(NMSettingPpp *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
+
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_eap;
+}
+
+gboolean
+nm_setting_ppp_get_initial_eps_refuse_pap(NMSettingPpp *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
+
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_pap;
+}
+
+gboolean
+nm_setting_ppp_get_initial_eps_refuse_chap(NMSettingPpp *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
+
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_chap;
+}
+
+gboolean
+nm_setting_ppp_get_initial_eps_refuse_mschap(NMSettingPpp *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
+
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_mschap;
+}
+
+gboolean
+nm_setting_ppp_get_initial_eps_refuse_mschapv2(NMSettingPpp *setting)
+{
+    g_return_val_if_fail(NM_IS_SETTING_PPP(setting), FALSE);
+
+    return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_mschapv2;
+}
+
+//APN Gnome Additional code end
 
 /**
  * nm_setting_ppp_get_nobsdcomp:
@@ -489,6 +556,63 @@ nm_setting_ppp_class_init(NMSettingPppClass *klass)
                                                NM_SETTING_PARAM_NONE,
                                                NMSettingPppPrivate,
                                                refuse_mschapv2);
+
+    //APN Gnome Additional code start
+    _nm_setting_property_define_direct_boolean(properties_override,
+                                               obj_properties,
+                                               NM_SETTING_PPP_INITIAL_EPS_BEARER_NOAUTH,
+                                               PROP_INITIAL_EPS_NOAUTH,
+                                               TRUE,
+                                               NM_SETTING_PARAM_NONE,
+                                               NMSettingPppPrivate,
+                                               initial_eps_noauth);
+
+    _nm_setting_property_define_direct_boolean(properties_override,
+                                               obj_properties,
+                                               NM_SETTING_PPP_INITIAL_EPS_BEARER_REFUSE_EAP,
+                                               PROP_INITIAL_EPS_REFUSE_EAP,
+                                               FALSE,
+                                               NM_SETTING_PARAM_NONE,
+                                               NMSettingPppPrivate,
+                                               initial_eps_refuse_eap);
+
+    _nm_setting_property_define_direct_boolean(properties_override,
+                                               obj_properties,
+                                               NM_SETTING_PPP_INITIAL_EPS_BEARER_REFUSE_PAP,
+                                               PROP_INITIAL_EPS_REFUSE_PAP,
+                                               FALSE,
+                                               NM_SETTING_PARAM_NONE,
+                                               NMSettingPppPrivate,
+                                               initial_eps_refuse_pap);
+
+    _nm_setting_property_define_direct_boolean(properties_override,
+                                               obj_properties,
+                                               NM_SETTING_PPP_INITIAL_EPS_BEARER_REFUSE_CHAP,
+                                               PROP_INITIAL_EPS_REFUSE_CHAP,
+                                               FALSE,
+                                               NM_SETTING_PARAM_NONE,
+                                               NMSettingPppPrivate,
+                                               initial_eps_refuse_chap);
+
+    _nm_setting_property_define_direct_boolean(properties_override,
+                                               obj_properties,
+                                               NM_SETTING_PPP_INITIAL_EPS_BEARER_REFUSE_MSCHAP,
+                                               PROP_INITIAL_EPS_REFUSE_MSCHAP,
+                                               FALSE,
+                                               NM_SETTING_PARAM_NONE,
+                                               NMSettingPppPrivate,
+                                               initial_eps_refuse_mschap);
+
+    _nm_setting_property_define_direct_boolean(properties_override,
+                                               obj_properties,
+                                               NM_SETTING_PPP_INITIAL_EPS_BEARER_REFUSE_MSCHAPV2,
+                                               PROP_INITIAL_EPS_REFUSE_MSCHAPV2,
+                                               FALSE,
+                                               NM_SETTING_PARAM_NONE,
+                                               NMSettingPppPrivate,
+                                               initial_eps_refuse_mschapv2);
+
+    //APN Gnome Additional code end
 
     /**
      * NMSettingPpp:nobsdcomp:
