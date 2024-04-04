@@ -329,6 +329,12 @@ nm_setting_gsm_get_initial_eps_apn(NMSettingGsm *setting)
 }
 
 //APN Gnome Additional code start
+/**
+ * nm_setting_gsm_get_initial_eps_username:
+ * @setting: the #NMSettingGsm
+ *
+ * Returns: the #NMSettingGsm:initial-eps-bearer-username property of the setting
+ **/
 const char *
 nm_setting_gsm_get_initial_eps_username(NMSettingGsm *setting)
 {
@@ -336,6 +342,13 @@ nm_setting_gsm_get_initial_eps_username(NMSettingGsm *setting)
 
     return NM_SETTING_GSM_GET_PRIVATE(setting)->initial_eps_username;
 }
+
+/**
+ * nm_setting_gsm_get_initial_eps_password:
+ * @setting: the #NMSettingGsm
+ *
+ * Returns: the #NMSettingGsm:initial-eps-bearer-password property of the setting
+ **/
 const char *
 nm_setting_gsm_get_initial_eps_password(NMSettingGsm *setting)
 {
@@ -874,6 +887,13 @@ nm_setting_gsm_class_init(NMSettingGsmClass *klass)
                                               .direct_string_allow_empty = TRUE);
 
     //APN Gnome Additional code start
+    /**
+     * NMSettingGsm:initial-eps-bearer-username:
+     *
+     * For LTE modems, this sets the username for the initial EPS bearer that is set
+     * up when attaching to the network.  Setting this parameter implies
+     * initial-eps-bearer-username to be TRUE.
+     **/
     _nm_setting_property_define_direct_string(properties_override,
                                               obj_properties,
                                               NM_SETTING_GSM_INITIAL_EPS_BEARER_USERNAME,
@@ -883,6 +903,13 @@ nm_setting_gsm_class_init(NMSettingGsmClass *klass)
                                               initial_eps_username,
                                               .direct_string_allow_empty = TRUE);
 
+    /**
+     * NMSettingGsm:initial-eps-bearer-password:
+     *
+     * For LTE modems, this sets the password for the initial EPS bearer that is set
+     * up when attaching to the network.  Setting this parameter implies
+     * initial-eps-bearer-username to be TRUE.
+     **/
     _nm_setting_property_define_direct_string(properties_override,
                                               obj_properties,
                                               NM_SETTING_GSM_INITIAL_EPS_BEARER_PASSWORD,
