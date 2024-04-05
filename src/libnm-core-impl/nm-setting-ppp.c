@@ -183,6 +183,12 @@ nm_setting_ppp_get_refuse_mschapv2(NMSettingPpp *setting)
 }
 
 //APN Gnome Additional code start
+/**
+ * nm_setting_ppp_get_initial_eps_noauth:
+ * @setting: the #NMSettingPpp
+ *
+ * Returns: For LTE modems, the #NMSettingPpp:noauth property of the setting
+ **/
 gboolean
 nm_setting_ppp_get_initial_eps_noauth(NMSettingPpp *setting)
 {
@@ -191,6 +197,12 @@ nm_setting_ppp_get_initial_eps_noauth(NMSettingPpp *setting)
     return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_noauth;
 }
 
+/**
+ * nm_setting_ppp_get_initial_eps_refuse_eap:
+ * @setting: the #NMSettingPpp
+ *
+ * Returns: For LTE modems, the #NMSettingPpp:eap property of the setting
+ **/
 gboolean
 nm_setting_ppp_get_initial_eps_refuse_eap(NMSettingPpp *setting)
 {
@@ -199,6 +211,12 @@ nm_setting_ppp_get_initial_eps_refuse_eap(NMSettingPpp *setting)
     return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_eap;
 }
 
+/**
+ * nm_setting_ppp_get_initial_eps_refuse_pap:
+ * @setting: the #NMSettingPpp
+ *
+ * Returns: For LTE modems, the #NMSettingPpp:pap property of the setting
+ **/
 gboolean
 nm_setting_ppp_get_initial_eps_refuse_pap(NMSettingPpp *setting)
 {
@@ -207,6 +225,12 @@ nm_setting_ppp_get_initial_eps_refuse_pap(NMSettingPpp *setting)
     return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_pap;
 }
 
+/**
+ * nm_setting_ppp_get_initial_eps_refuse_chap:
+ * @setting: the #NMSettingPpp
+ *
+ * Returns: For LTE modems, the #NMSettingPpp:chap property of the setting
+ **/
 gboolean
 nm_setting_ppp_get_initial_eps_refuse_chap(NMSettingPpp *setting)
 {
@@ -215,6 +239,12 @@ nm_setting_ppp_get_initial_eps_refuse_chap(NMSettingPpp *setting)
     return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_chap;
 }
 
+/**
+ * nm_setting_ppp_get_initial_eps_refuse_mschap:
+ * @setting: the #NMSettingPpp
+ *
+ * Returns: For LTE modems, the #NMSettingPpp:mschap property of the setting
+ **/
 gboolean
 nm_setting_ppp_get_initial_eps_refuse_mschap(NMSettingPpp *setting)
 {
@@ -223,6 +253,12 @@ nm_setting_ppp_get_initial_eps_refuse_mschap(NMSettingPpp *setting)
     return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_mschap;
 }
 
+/**
+ * nm_setting_ppp_get_initial_eps_refuse_mschapv2:
+ * @setting: the #NMSettingPpp
+ *
+ * Returns: For LTE modems, the #NMSettingPpp:mschapv2 property of the setting
+ **/
 gboolean
 nm_setting_ppp_get_initial_eps_refuse_mschapv2(NMSettingPpp *setting)
 {
@@ -230,7 +266,6 @@ nm_setting_ppp_get_initial_eps_refuse_mschapv2(NMSettingPpp *setting)
 
     return NM_SETTING_PPP_GET_PRIVATE(setting)->initial_eps_refuse_mschapv2;
 }
-
 //APN Gnome Additional code end
 
 /**
