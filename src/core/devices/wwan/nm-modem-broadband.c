@@ -669,7 +669,6 @@ connect_context_step(NMModemBroadband *self)
             const char   *apn       = nm_setting_gsm_get_initial_eps_apn(s_gsm);
             gboolean      do_config = nm_setting_gsm_get_initial_eps_config(s_gsm);
 
-            //APN Gnome Additional code start
             const char   *username  = nm_setting_gsm_get_initial_eps_username(s_gsm);
             const char   *password  = nm_setting_gsm_get_initial_eps_password(s_gsm);
 
@@ -680,7 +679,6 @@ connect_context_step(NMModemBroadband *self)
             gboolean      refuse_mschap_enabled   = nm_setting_ppp_get_initial_eps_refuse_mschap(s_ppp);
             gboolean      refuse_mschapv2_enabled = nm_setting_ppp_get_initial_eps_refuse_mschapv2(s_ppp);
             gboolean      refuse_eap_enabled      = nm_setting_ppp_get_initial_eps_refuse_eap(s_ppp);
-            //APN Gnome Additional code end
 
             /* assume do_config is true if an APN is set */
             if (apn || do_config) {
@@ -705,37 +703,30 @@ connect_context_step(NMModemBroadband *self)
                 }
                 if (apn)
                     mm_bearer_properties_set_apn(config, apn);
-
-                    //APN Gnome Additional code start            
+      
                     mm_bearer_properties_set_user(config, username);
                     mm_bearer_properties_set_password(config, password);
 
                     if(noauth_enabled == FALSE){
                         if(refuse_pap_enabled == FALSE) {
                             mm_bearer_properties_set_allowed_auth(config, MM_BEARER_ALLOWED_AUTH_PAP);
-                            _LOGD("APN GNOME - ALLOWED AUTH - PAP");
                         } 
                         else if (refuse_chap_enabled == FALSE) {
                             mm_bearer_properties_set_allowed_auth(config, MM_BEARER_ALLOWED_AUTH_CHAP);
-                            _LOGD("APN GNOME - ALLOWED AUTH - CHAP");
                         }
                         else if (refuse_mschap_enabled == FALSE) {
                             mm_bearer_properties_set_allowed_auth(config, MM_BEARER_ALLOWED_AUTH_MSCHAP);
-                            _LOGD("APN GNOME - ALLOWED AUTH - MSCHAP");
                         }
                         else if (refuse_mschapv2_enabled == FALSE) {
                             mm_bearer_properties_set_allowed_auth(config, MM_BEARER_ALLOWED_AUTH_MSCHAPV2);
-                            _LOGD("APN GNOME - ALLOWED AUTH - MSCHAPV2");
                         }
                         else if (refuse_pap_enabled == FALSE) {
                             mm_bearer_properties_set_allowed_auth(config, MM_BEARER_ALLOWED_AUTH_EAP);
-                            _LOGD("APN GNOME - ALLOWED AUTH - EAP");
                         }
                     }
                     else if (noauth_enabled == TRUE) {
                         mm_bearer_properties_set_allowed_auth(config, MM_BEARER_ALLOWED_AUTH_NONE);
                     }
-                    //APN Gnome Additional code end
                     
                 /*
                  * Setting the initial EPS bearer settings is a no-op in

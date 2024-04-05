@@ -42,10 +42,8 @@ G_BEGIN_DECLS
 #define NM_SETTING_GSM_INITIAL_EPS_BEARER_CONFIGURE "initial-eps-bearer-configure"
 #define NM_SETTING_GSM_INITIAL_EPS_BEARER_APN       "initial-eps-bearer-apn"
 
-//APN Gnome Additional code start
 #define NM_SETTING_GSM_INITIAL_EPS_BEARER_USERNAME  "initial-eps-bearer-username"
 #define NM_SETTING_GSM_INITIAL_EPS_BEARER_PASSWORD  "initial-eps-bearer-password"
-//APN Gnome Additional code end
 
 /* Deprecated */
 #define NM_SETTING_GSM_NUMBER "number"
@@ -79,13 +77,8 @@ gboolean nm_setting_gsm_get_initial_eps_config(NMSettingGsm *setting);
 NM_AVAILABLE_IN_1_44
 const char *nm_setting_gsm_get_initial_eps_apn(NMSettingGsm *setting);
 
-//APN Gnome Additional code start
-NM_AVAILABLE_IN_1_48
 const char *nm_setting_gsm_get_initial_eps_username(NMSettingGsm *setting);
-NM_AVAILABLE_IN_1_48
 const char *nm_setting_gsm_get_initial_eps_password(NMSettingGsm *setting);
-
-//APN Gnome Additional code end
 
 NM_DEPRECATED_IN_1_16
 const char *nm_setting_gsm_get_number(NMSettingGsm *setting);

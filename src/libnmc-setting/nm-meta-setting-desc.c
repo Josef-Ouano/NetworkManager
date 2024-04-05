@@ -6077,14 +6077,12 @@ static const NMMetaPropertyInfo *const property_infos_GSM[] = {
     PROPERTY_INFO_WITH_DESC (NM_SETTING_GSM_INITIAL_EPS_BEARER_APN,
         .property_type =                &_pt_gobject_string,
     ),
-    //APN Gnome Additional code start
     PROPERTY_INFO_WITH_DESC (NM_SETTING_GSM_INITIAL_EPS_BEARER_USERNAME,
         .property_type =                &_pt_gobject_string,
     ),
     PROPERTY_INFO_WITH_DESC (NM_SETTING_GSM_INITIAL_EPS_BEARER_PASSWORD,
         .property_type =                &_pt_gobject_string,
     ),
-    //APN Gnome Additional code end
     NULL
 };
 
@@ -7209,7 +7207,6 @@ static const NMMetaPropertyInfo *const property_infos_PPP[] = {
     PROPERTY_INFO_WITH_DESC (NM_SETTING_PPP_REFUSE_MSCHAPV2,
         .property_type =                &_pt_gobject_bool,
     ),
-    //APN Gnome Additional code start
     PROPERTY_INFO_WITH_DESC (NM_SETTING_PPP_INITIAL_EPS_BEARER_NOAUTH,
         .property_type =                &_pt_gobject_bool,
     ),
@@ -7228,7 +7225,6 @@ static const NMMetaPropertyInfo *const property_infos_PPP[] = {
     PROPERTY_INFO_WITH_DESC (NM_SETTING_PPP_INITIAL_EPS_BEARER_REFUSE_MSCHAPV2,
         .property_type =                &_pt_gobject_bool,
     ),
-    //APN Gnome Additional code end
     PROPERTY_INFO_WITH_DESC (NM_SETTING_PPP_NOBSDCOMP,
         .property_type =                &_pt_gobject_bool,
     ),

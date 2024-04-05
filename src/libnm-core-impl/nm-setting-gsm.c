@@ -38,12 +38,9 @@ NM_GOBJECT_PROPERTIES_DEFINE_BASE(PROP_AUTO_CONFIG,
                                   PROP_SIM_OPERATOR_ID,
                                   PROP_MTU,
                                   PROP_INITIAL_EPS_CONFIG,
-                                  //APN GNome Additional code start
-                                  //PROP_INITIAL_EPS_APN, );
                                   PROP_INITIAL_EPS_APN, 
                                   PROP_INITIAL_EPS_USERNAME,
                                   PROP_INITIAL_EPS_PASSWORD, );
-                                  //APN Gnome Additional code end
 
 typedef struct {
     char   *number;
@@ -56,10 +53,8 @@ typedef struct {
     char   *network_id;
     char   *pin;
     char   *initial_eps_apn;
-    //APN GNome Additional code start
     char   *initial_eps_username;
     char   *initial_eps_password;
-    //APN Gnome Additional code end
     guint   password_flags;
     guint   pin_flags;
     guint32 mtu;
@@ -328,7 +323,6 @@ nm_setting_gsm_get_initial_eps_apn(NMSettingGsm *setting)
     return NM_SETTING_GSM_GET_PRIVATE(setting)->initial_eps_apn;
 }
 
-//APN Gnome Additional code start
 /**
  * nm_setting_gsm_get_initial_eps_username:
  * @setting: the #NMSettingGsm
@@ -356,7 +350,6 @@ nm_setting_gsm_get_initial_eps_password(NMSettingGsm *setting)
 
     return NM_SETTING_GSM_GET_PRIVATE(setting)->initial_eps_password;
 }
-//APN Gnome Additional code end
 
 static gboolean
 _verify_apn(const char *apn, gboolean allow_empty, const char *property_name, GError **error)
@@ -886,7 +879,6 @@ nm_setting_gsm_class_init(NMSettingGsmClass *klass)
                                               initial_eps_apn,
                                               .direct_string_allow_empty = TRUE);
 
-    //APN Gnome Additional code start
     /**
      * NMSettingGsm:initial-eps-bearer-username:
      *
@@ -918,7 +910,6 @@ nm_setting_gsm_class_init(NMSettingGsmClass *klass)
                                               NMSettingGsmPrivate,
                                               initial_eps_password,
                                               .direct_string_allow_empty = TRUE);
-    //APN Gnome Additional code end
 
     /* Ignore incoming deprecated properties */
     _nm_properties_override_dbus(properties_override,
